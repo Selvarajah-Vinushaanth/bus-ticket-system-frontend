@@ -1,0 +1,26 @@
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-icon {
+  color: #667eea;
+  font-size: 18px;
+}
+
+.language-select {
+  padding: 6px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.language-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+

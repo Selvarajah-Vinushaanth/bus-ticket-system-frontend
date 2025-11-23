@@ -1,0 +1,135 @@
+.ticket-print {
+  background: white;
+  border: 3px solid #333;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.ticket-print::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 10px,
+    #ccc 10px,
+    #ccc 12px
+  );
+  transform: translateX(-50%);
+}
+
+.ticket-header {
+  text-align: center;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.ticket-logo {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 10px;
+}
+
+.ticket-header h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.ticket-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+.ticket-body {
+  margin-bottom: 20px;
+}
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.ticket-row:last-child {
+  border-bottom: none;
+}
+
+.ticket-label {
+  font-weight: 600;
+  color: #666;
+  font-size: 14px;
+}
+
+.ticket-value {
+  font-weight: 500;
+  color: #333;
+  text-align: right;
+  font-size: 14px;
+}
+
+.ticket-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #667eea;
+  letter-spacing: 1px;
+}
+
+.ticket-fare {
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #667eea;
+}
+
+.fare-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+.ticket-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 2px solid #667eea;
+  color: #666;
+}
+
+.ticket-footer svg {
+  font-size: 32px;
+  color: #667eea;
+  margin-bottom: 10px;
+}
+
+.ticket-footer p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+.ticket-warning {
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+@media print {
+  .ticket-print {
+    border: 2px solid #000;
+    page-break-inside: avoid;
+  }
+
+  .ticket-print::before {
+    display: none;
+  }
+}
+
