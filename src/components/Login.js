@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaBus, FaUser, FaLock } from 'react-icons/fa';
 import { useTranslation } from '../hooks/useTranslation';
+import { login } from '../services/api';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -14,25 +15,12 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-
+  
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        onLogin(data);
-      } else {
-        setError(data.error || t('loginFailed'));
-      }
+      const data = await login(username, password); // <-- call your backend URL
+      onLogin(data); // save user info in app state
     } catch (err) {
-      setError(t('connectionError'));
+      setError(err.response?.data?.error || t('loginFailed'));
     } finally {
       setLoading(false);
     }
