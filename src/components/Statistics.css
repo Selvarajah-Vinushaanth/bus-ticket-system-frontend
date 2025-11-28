@@ -67,6 +67,26 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.btn-clear-date {
+  background: #f87171;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-clear-date:hover {
+  background: #ef4444;
+  transform: translateY(-1px);
+}
+
 .export-buttons {
   display: flex;
   gap: 10px;

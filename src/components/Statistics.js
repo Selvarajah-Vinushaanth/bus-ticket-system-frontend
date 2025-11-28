@@ -11,7 +11,7 @@ const Statistics = ({ user }) => {
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [selectedDate, setSelectedDate] = useState(''); // Empty means all time
 
   useEffect(() => {
     loadStatistics();
@@ -84,7 +84,17 @@ const Statistics = ({ user }) => {
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
+                placeholder="All time"
               />
+              {selectedDate && (
+                <button 
+                  onClick={() => setSelectedDate('')} 
+                  className="btn-clear-date"
+                  title="Show all statistics"
+                >
+                  ✕ Show All
+                </button>
+              )}
             </div>
             <div className="export-buttons">
               <button onClick={handleExportPDF} className="btn-export" title={t('exportPDF')}>

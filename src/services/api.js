@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL ='https://bus-ticket-system-backend.onrender.com/api';
+const API_BASE_URL ='http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -57,6 +57,31 @@ export const getStatistics = async (conductorId, date) => {
   if (date) params.date = date;
 
   const response = await api.get('/statistics', { params });
+  return response.data;
+};
+
+export const chatQuestion = async (question) => {
+  const response = await api.post('/chat', { question });
+  return response.data;
+};
+
+export const chatConversation = async (messages, conductorId = null, conductorRoute = null) => {
+  const response = await api.post('/chat/conversation', { messages, conductorId, conductorRoute });
+  return response.data;
+};
+
+export const generateTicketAI = async (prompt, conductorId, conductorRoute) => {
+  const response = await api.post('/tickets/generate', { prompt, conductorId, conductorRoute });
+  return response.data;
+};
+
+export const getChatHistory = async (conductorId, limit = 50) => {
+  const response = await api.get(`/chat/history/${conductorId}?limit=${limit}`);
+  return response.data;
+};
+
+export const clearChatHistory = async (conductorId) => {
+  const response = await api.delete(`/chat/history/${conductorId}`);
   return response.data;
 };
 

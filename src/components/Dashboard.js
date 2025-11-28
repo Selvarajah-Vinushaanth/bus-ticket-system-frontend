@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTicketAlt, FaHistory, FaChartBar, FaSignOutAlt, FaBus, FaUser } from 'react-icons/fa';
+import { FaTicketAlt, FaHistory, FaChartBar, FaSignOutAlt, FaBus, FaUser, FaComments } from 'react-icons/fa';
 import { getStatistics } from '../services/api';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useTranslation } from '../hooks/useTranslation';
+import ChatAssistant from './ChatAssistant';
 import './Dashboard.css';
 
 const Dashboard = ({ user, onLogout }) => {
   const { t } = useTranslation();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showChat, setShowChat] = useState(false);
   const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
@@ -94,6 +96,16 @@ const Dashboard = ({ user, onLogout }) => {
           </div>
         )}
       </div>
+
+      {/* Chat Assistant Toggle Button */}
+      {!showChat && (
+        <button className="chat-toggle-btn" onClick={() => setShowChat(true)}>
+          <FaComments /> Chat Assistant
+        </button>
+      )}
+
+      {/* Chat Assistant Component */}
+      {showChat && <ChatAssistant user={user} onClose={() => setShowChat(false)} />}
     </div>
   );
 };
