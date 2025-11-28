@@ -36,7 +36,7 @@ const ChatAssistant = ({ user, onClose }) => {
       setHistoryLoaded(true); // Set this immediately to prevent duplicate calls
       
       try {
-        const response = await fetch(`http://localhost:5000/api/chat/history/${user.id}`);
+        const response = await fetch(`https://bus-ticket-system-backend.onrender.com/api/chat/history/${user.id}`);
         const data = await response.json();
         
         if (isMounted && data.success && data.history && data.history.length > 0) {
@@ -118,7 +118,7 @@ const ChatAssistant = ({ user, onClose }) => {
     setShowClearModal(false);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/chat/history/${user.id}`, {
+      const response = await fetch(`https://bus-ticket-system-backend.onrender.com/api/chat/history/${user.id}`, {
         method: 'DELETE'
       });
       const data = await response.json();
